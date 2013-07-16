@@ -10,7 +10,6 @@
   <div class="span2 trackboxPC <%= (tick_track.tick >=10 ? "winded" : "tick" + tick_track.tick.to_s()) %>">
     <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
     <h1><%= tick_track.tick %><br></h1>
-    <%= tick_track.campaign.name %>
     <%if cookie_id != nil %>    
     <div class="btn-group">
       <%= link_to '1', "/tick_tracks/#{tick_track.id}/incOne", :method => :put, :class => "btn btn-mini" %>
