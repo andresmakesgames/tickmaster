@@ -7,16 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% cookie_name = cookies[:campaign_name] %>
     <div class="navbar navbar-static-top">
   <div class="navbar-inner">
-    <div class="brand">TickMaster</div>
+    <div class="brand">TickTracker</div>
     <ul class="nav">
+      <li><%= link_to 'Current Campaign: ' + (cookie_name != nil ? cookie_name : 'None'),"/tick_tracks/" %></li>
+      <li><%= link_to 'Manage / Select Campaigns', "/campaigns/" %></li>
     </ul>
   </div>
 </div>
 <div class="container">
-
-
 
 <%= yield %>
 </div>

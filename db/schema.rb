@@ -11,15 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715183938) do
+ActiveRecord::Schema.define(:version => 20130716031942) do
+
+  create_table "campaigns", :force => true do |t|
+    t.string   "name"
+    t.string   "GM"
+    t.boolean  "active"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "tick_tracks", :force => true do |t|
     t.string   "name"
     t.integer  "tick"
     t.integer  "wound"
     t.boolean  "isPC"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "campaign_id"
   end
+
+  add_index "tick_tracks", ["campaign_id"], :name => "index_tick_tracks_on_campaign_id"
 
 end

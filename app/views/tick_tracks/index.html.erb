@@ -1,13 +1,17 @@
-
+<% cookie_id = cookies[:campaign_id] %>
+<% if cookie_id != nil %>
+<% @tick_tracks = @tick_tracks.select {|obj| obj.campaign_id == Integer(cookie_id)} %>
 <h2>Player Ticks</h2>
 
 <div class="row well">
-<% @PCtracks = @tick_tracks.select { |obj| obj.isPC == true } %>
+<% @PCtracks = @tick_tracks.select { |obj| (obj.isPC == true && obj.campaign.active == true) } %>
 <% @PCtracks.sort!{ |a,b| a.name <=> b.name} %>
 <% @PCtracks.each do |tick_track| %>
   <div class="span2 trackboxPC <%= (tick_track.tick >=10 ? "winded" : "tick" + tick_track.tick.to_s()) %>">
     <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
     <h1><%= tick_track.tick %><br></h1>
+    <%= tick_track.campaign.name %>
+    <%if cookie_id != nil %>    
     <div class="btn-group">
       <%= link_to '1', "/tick_tracks/#{tick_track.id}/incOne", :method => :put, :class => "btn btn-mini" %>
       <%= link_to '2', "/tick_tracks/#{tick_track.id}/incTwo", :method => :put, :class => "btn btn-mini" %>
@@ -15,6 +19,7 @@
       <%= link_to '4', "/tick_tracks/#{tick_track.id}/incFour", :method => :put, :class => "btn btn-mini" %>
       <%= link_to '5', "/tick_tracks/#{tick_track.id}/incFive", :method => :put, :class => "btn btn-mini" %>
     </div>
+    <% end %>
   </div>
 <% end %>
 </div>
@@ -22,12 +27,13 @@
 <h2>NPC Ticks</h2>
 
 <div class="row well">
-<% @NPCtracks = @tick_tracks.select { |obj| obj.isPC == false } %>
+<% @NPCtracks = @tick_tracks.select { |obj| (obj.isPC == false && obj.campaign.active == true) } %>
 <% @NPCtracks.sort!{ |a,b| a.name <=> b.name} %>
 <% @NPCtracks.each do |tick_track| %>
   <div class="span2 trackboxNPC <%= (tick_track.tick >=10 ? "winded" : "tick" + tick_track.tick.to_s()) %>">
     <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
     <h1><%= tick_track.tick %><br></h1>
+   <%if cookie_id != nil %>
     <div class="btn-group">
       <%= link_to '1', "/tick_tracks/#{tick_track.id}/incOne", :method => :put, :class => "btn btn-mini" %>
       <%= link_to '2', "/tick_tracks/#{tick_track.id}/incTwo", :method => :put, :class => "btn btn-mini" %>
@@ -35,13 +41,21 @@
       <%= link_to '4', "/tick_tracks/#{tick_track.id}/incFour", :method => :put, :class => "btn btn-mini" %>
       <%= link_to '5', "/tick_tracks/#{tick_track.id}/incFive", :method => :put, :class => "btn btn-mini" %>
     </div>
+    <% end %>
   </div>
 <% end %>
 </div>
 
 <div class ="mainbuttons">
-<%= link_to 'Advance Tick', "/decAll", :method => :post, :class => "btn btn-primary btn-large" %>
-<%= link_to 'New Tracker', new_tick_track_path, :class => "btn btn-large" %>
-</div
+  <%= link_to 'Advance Tick', "/decAll", :method => :post, :class => "btn btn-primary btn-large" %>
+  <%= link_to 'New Tracker', new_tick_track_path, :class => "btn btn-large" %>
+</div>
+<% else %>
+<div class= "nocampaign">
+  <img src="assets/stopwatch-s.gif"><br>
+  <%= link_to 'Click Here to Select a Campaign', "/campaigns/", :class => "btn btn-large" %>  
+</div>
+<% end %>
+
 
 

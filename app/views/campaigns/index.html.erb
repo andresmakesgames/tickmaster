@@ -1,0 +1,30 @@
+<h1>Listing campaigns</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Gm</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @campaigns.each do |campaign| %>
+  <tr>
+    <td><%= campaign.name %></td>
+    <td><%= campaign.GM %></td>
+    <td><%= campaign.active %></td>
+    <td><%= link_to 'Show', campaign %></td>
+    <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
+    <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Current', "/campaigns/#{campaign.id}/setCurrent", :method => :put %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Campaign', new_campaign_path %>
+<%= link_to 'Clear Current', "/clearCurrent/", :method => :put %>
