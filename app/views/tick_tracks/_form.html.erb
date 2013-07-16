@@ -8,5 +8,6 @@
 <% else %>
 <%= f.input :campaign_id, collection: Campaign.where(:active => true), label: 'Select your campaign:' %>
 <% end %>
+<%= f.hidden_field :wound, value: 0 %>
 <%= f.button :submit %>
 <% end %>

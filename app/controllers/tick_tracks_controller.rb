@@ -172,4 +172,20 @@ class TickTracksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  #Wounds etc
+  def woundCycle
+    @tick_track = TickTrack.find(params[:id])
+    if @tick_track.wound != nil && @tick_track.wound < 5
+      @tick_track.wound += 1
+    else
+      @tick_track.wound = 0
+    end
+    @tick_track.save
+
+    respond_to do |format|
+      format.html { redirect_to tick_tracks_url }
+     format.json { head :no_content }
+    end
+  end
 end

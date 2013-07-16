@@ -3,10 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-	a:link {color:#333333;}      /* unvisited link */
-	a:visited {color:#333333;}  /* visited link */
-	a:hover {color:#ffffff; text-decoration: none;}  /* mouse over link */
-	a:active {color:#333333;}  /* selected link */
+
 
 .nocampaign {
 	text-align: center;
@@ -14,32 +11,65 @@
 
 .trackboxPC {
 	text-align: center;
-	background: #ccff99;
 	color: black;
 	padding-bottom: 5px;
 	margin: 10px 22px 10px 22px;
+	a:link {color:#000000; text-decoration: none;}      /* unvisited link */
+	a:visited {color:#000000; text-decoration: none;}  /* visited link */
+	a:hover {color:#ffffff; text-decoration: none;}  /* mouse over link */
+	a:active {color:#000000; text-decoration: none;}  /* selected link */
 }
 
 .trackboxNPC {
 	text-align: center;
-	background: #ff6633;
 	color: black;
 	padding-bottom: 5px;
 	margin: 10px 22px 10px 22px;
+	a:link {color:#000000; text-decoration: none;}      /* unvisited link */
+	a:visited {color:#000000; text-decoration: none;}  /* visited link */
+	a:hover {color:#dddddd; text-decoration: none;}  /* mouse over link */
+	a:active {color:#000000; text-decoration: none;}  /* selected link */
 }
 
 .tick0.trackboxPC {
-	background: #33ff00;
-};
+	color: #00aa00;
+}
 
 .tick0.trackboxNPC {
-	background: red;
+	color: #00aa00;
 }
 
 .winded {
-	background: #cccccc;
+	color: #ff0000;
 }
 
 .mainbuttons {
 	margin-top: 30px;
 }
+
+.wound0 {
+	background: #ccff99;
+}
+
+.wound1 {
+	background: #ffff99;
+}
+
+.wound2 {
+	background: #ff9933;
+}
+
+.wound3 {
+	background: #dd0000;
+}
+
+.wound4 {
+	background: #880000;
+}
+
+.wound5 {
+	background: #666666;
+	color: #666666 !important;
+}
+
+

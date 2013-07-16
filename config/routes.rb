@@ -8,6 +8,8 @@ TickMaster::Application.routes.draw do
   put "campaigns/:id/setCurrent" => "campaigns#setCurrent"
   put "/clearCurrent" => "campaigns#clearCurrent"
 
+  put "tick_tracks/:id/woundCycle" => "tick_tracks#woundCycle"
+
   put "tick_tracks/:id/incTick" => "tick_tracks#incTick"
   put "tick_tracks/:id/incOne" => "tick_tracks#incOne"
   put "tick_tracks/:id/incTwo" => "tick_tracks#incTwo"
