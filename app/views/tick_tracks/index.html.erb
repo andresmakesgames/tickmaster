@@ -9,11 +9,11 @@
     <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
     <h1><%= tick_track.tick %><br></h1>
     <div class="btn-group">
-      <button class="btn btn-mini"><%= link_to '1', "/tick_tracks/#{tick_track.id}/incOne", :method => :put %></button>
-      <button class="btn btn-mini"><%= link_to '2', "/tick_tracks/#{tick_track.id}/incTwo", :method => :put %></button>
-      <button class="btn btn-mini"><%= link_to '3', "/tick_tracks/#{tick_track.id}/incThree", :method => :put %></button>
-      <button class="btn btn-mini"><%= link_to '4', "/tick_tracks/#{tick_track.id}/incFour", :method => :put %></button>
-      <button class="btn btn-mini"><%= link_to '5', "/tick_tracks/#{tick_track.id}/incFive", :method => :put %></button>
+      <%= link_to '1', "/tick_tracks/#{tick_track.id}/incOne", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '2', "/tick_tracks/#{tick_track.id}/incTwo", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '3', "/tick_tracks/#{tick_track.id}/incThree", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '4', "/tick_tracks/#{tick_track.id}/incFour", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '5', "/tick_tracks/#{tick_track.id}/incFive", :method => :put, :class => "btn btn-mini" %>
     </div>
   </div>
 <% end %>
@@ -29,11 +29,11 @@
     <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
     <h1><%= tick_track.tick %><br></h1>
     <div class="btn-group">
-      <button class="btn btn-mini"><%= link_to '1', "/tick_tracks/#{tick_track.id}/incOne", :method => :put %></button>
-      <button class="btn btn-mini"><%= link_to '2', "/tick_tracks/#{tick_track.id}/incTwo", :method => :put %></button>
-      <button class="btn btn-mini"><%= link_to '3', "/tick_tracks/#{tick_track.id}/incThree", :method => :put %></button>
-      <button class="btn btn-mini"><%= link_to '4', "/tick_tracks/#{tick_track.id}/incFour", :method => :put %></button>
-      <button class="btn btn-mini"><%= link_to '5', "/tick_tracks/#{tick_track.id}/incFive", :method => :put %></button>
+      <%= link_to '1', "/tick_tracks/#{tick_track.id}/incOne", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '2', "/tick_tracks/#{tick_track.id}/incTwo", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '3', "/tick_tracks/#{tick_track.id}/incThree", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '4', "/tick_tracks/#{tick_track.id}/incFour", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '5', "/tick_tracks/#{tick_track.id}/incFive", :method => :put, :class => "btn btn-mini" %>
     </div>
   </div>
 <% end %>

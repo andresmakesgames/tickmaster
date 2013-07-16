@@ -1,8 +1,10 @@
 TickMaster::Application.routes.draw do
   resources :tick_tracks
   
+  root to: "tick_tracks#index"
+
   put "tick_tracks/:id/incTick" => "tick_tracks#incTick"
-  
+
   put "tick_tracks/:id/incOne" => "tick_tracks#incOne"
   put "tick_tracks/:id/incTwo" => "tick_tracks#incTwo"
   put "tick_tracks/:id/incThree" => "tick_tracks#incThree"

@@ -2,10 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-a:link {color:#000000;}      /* unvisited link */
-a:visited {color:#000000;}  /* visited link */
-a:hover {color:#ffffff; text-decoration: none;}  /* mouse over link */
-a:active {color:#000000;}  /* selected link */
+
+	a:link {color:#333333;}      /* unvisited link */
+	a:visited {color:#333333;}  /* visited link */
+	a:hover {color:#ffffff; text-decoration: none;}  /* mouse over link */
+	a:active {color:#333333;}  /* selected link */
+
 
 .trackboxPC {
 	text-align: center;
