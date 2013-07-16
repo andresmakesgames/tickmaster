@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @tick_track.name %>
+</p>
+
+<p>
+  <b>Tick:</b>
+  <%= @tick_track.tick %>
+</p>
+
+<p>
+  <b>Wound:</b>
+  <%= @tick_track.wound %>
+</p>
+
+<p>
+  <b>Ispc:</b>
+  <%= @tick_track.isPC %>
+</p>
+
+
+<%= link_to 'Edit', edit_tick_track_path(@tick_track) %> |
+<%= link_to 'Back', tick_tracks_path %>

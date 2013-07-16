@@ -1,0 +1,40 @@
+// Place all the styles related to the tickTracks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+a:link {color:#000000;}      /* unvisited link */
+a:visited {color:#000000;}  /* visited link */
+a:hover {color:#ffffff; text-decoration: none;}  /* mouse over link */
+a:active {color:#000000;}  /* selected link */
+
+.trackboxPC {
+	text-align: center;
+	background: #ccff99;
+	color: black;
+	padding-bottom: 5px;
+	margin: 10px 22px 10px 22px;
+}
+
+.trackboxNPC {
+	text-align: center;
+	background: #ff6633;
+	color: black;
+	padding-bottom: 5px;
+	margin: 10px 22px 10px 22px;
+}
+
+.tick0.trackboxPC {
+	background: #33ff00;
+};
+
+.tick0.trackboxNPC {
+	background: red;
+}
+
+.winded {
+	background: #cccccc;
+}
+
+.mainbuttons {
+	margin-top: 30px;
+}

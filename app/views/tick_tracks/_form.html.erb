@@ -1,0 +1,29 @@
+<%= form_for(@tick_track) do |f| %>
+  <% if @tick_track.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tick_track.errors.count, "error") %> prohibited this tick_track from being saved:</h2>
+
+      <ul>
+      <% @tick_track.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :tick %><br />
+    <%= f.number_field :tick %>
+  </div>
+  <div class="field">
+    Please check the box if this is a Player Character:<br />
+    <%= f.check_box :isPC %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

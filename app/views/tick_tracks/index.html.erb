@@ -1,0 +1,47 @@
+
+<h2>Player Ticks</h2>
+
+<div class="row well">
+<% @PCtracks = @tick_tracks.select { |obj| obj.isPC == true } %>
+<% @PCtracks.sort!{ |a,b| a.name <=> b.name} %>
+<% @PCtracks.each do |tick_track| %>
+  <div class="span2 trackboxPC <%= (tick_track.tick >=10 ? "winded" : "tick" + tick_track.tick.to_s()) %>">
+    <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
+    <h1><%= tick_track.tick %><br></h1>
+    <div class="btn-group">
+      <button class="btn btn-mini"><%= link_to '1', "/tick_tracks/#{tick_track.id}/incOne", :method => :put %></button>
+      <button class="btn btn-mini"><%= link_to '2', "/tick_tracks/#{tick_track.id}/incTwo", :method => :put %></button>
+      <button class="btn btn-mini"><%= link_to '3', "/tick_tracks/#{tick_track.id}/incThree", :method => :put %></button>
+      <button class="btn btn-mini"><%= link_to '4', "/tick_tracks/#{tick_track.id}/incFour", :method => :put %></button>
+      <button class="btn btn-mini"><%= link_to '5', "/tick_tracks/#{tick_track.id}/incFive", :method => :put %></button>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<h2>NPC Ticks</h2>
+
+<div class="row well">
+<% @NPCtracks = @tick_tracks.select { |obj| obj.isPC == false } %>
+<% @NPCtracks.sort!{ |a,b| a.name <=> b.name} %>
+<% @NPCtracks.each do |tick_track| %>
+  <div class="span2 trackboxNPC <%= (tick_track.tick >=10 ? "winded" : "tick" + tick_track.tick.to_s()) %>">
+    <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
+    <h1><%= tick_track.tick %><br></h1>
+    <div class="btn-group">
+      <button class="btn btn-mini"><%= link_to '1', "/tick_tracks/#{tick_track.id}/incOne", :method => :put %></button>
+      <button class="btn btn-mini"><%= link_to '2', "/tick_tracks/#{tick_track.id}/incTwo", :method => :put %></button>
+      <button class="btn btn-mini"><%= link_to '3', "/tick_tracks/#{tick_track.id}/incThree", :method => :put %></button>
+      <button class="btn btn-mini"><%= link_to '4', "/tick_tracks/#{tick_track.id}/incFour", :method => :put %></button>
+      <button class="btn btn-mini"><%= link_to '5', "/tick_tracks/#{tick_track.id}/incFive", :method => :put %></button>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<div class ="mainbuttons">
+<%= link_to 'Advance Tick', "/decAll", :method => :post, :class => "btn btn-primary btn-large" %>
+<%= link_to 'New Tracker', new_tick_track_path, :class => "btn btn-large" %>
+</div
+
+

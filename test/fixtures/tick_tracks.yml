@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  tick: 1
+  wound: 1
+  isPC: false
+
+two:
+  name: MyString
+  tick: 1
+  wound: 1
+  isPC: false
