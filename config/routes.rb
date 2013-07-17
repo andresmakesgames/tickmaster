@@ -8,17 +8,12 @@ TickMaster::Application.routes.draw do
   put "campaigns/:id/setCurrent" => "campaigns#setCurrent"
   put "/clearCurrent" => "campaigns#clearCurrent"
 
-  put "tick_tracks/:id/woundCycle" => "tick_tracks#woundCycle"
+  put "tick_tracks/:id/incWound" => "tick_tracks#incWound"
+  put "tick_tracks/:id/resetWound" => "tick_tracks#resetWound"
 
   put "tick_tracks/:id/incTick" => "tick_tracks#incTick"
-  put "tick_tracks/:id/incOne" => "tick_tracks#incOne"
-  put "tick_tracks/:id/incTwo" => "tick_tracks#incTwo"
-  put "tick_tracks/:id/incThree" => "tick_tracks#incThree"
-  put "tick_tracks/:id/incFour" => "tick_tracks#incFour"
-  put "tick_tracks/:id/incFive" => "tick_tracks#incFive"
-
-  put "tick_tracks/:id/decTick" => "tick_tracks#decTick"
   post "/decAll" => "tick_tracks#decAll"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

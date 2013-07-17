@@ -81,11 +81,13 @@ class TickTracksController < ApplicationController
     end
   end
 
-  #PUT /tick_tracks/1/incTick
+  #PUT /tick_tracks/1/incTick?amount=X
   def incTick
     @tick_track = TickTrack.find(params[:id])
-    @tick_track.increment (:tick)
-    @tick_track.save
+    if params[:amount] != nil
+      @tick_track.tick += params[:amount].to_i
+      @tick_track.save
+    end
 
     respond_to do |format|
       format.html { redirect_to tick_tracks_url }
@@ -93,18 +95,7 @@ class TickTracksController < ApplicationController
     end
   end
 
-  #PUT /tick_tracks/1/decTick
-  def decTick
-    @tick_track = TickTrack.find(params[:id])
-    @tick_track.decrement (:tick) if @tick_track.tick > 0
-    @tick_track.save
-
-    respond_to do |format|
-      format.html { redirect_to tick_tracks_url }
-      format.json { head :no_content }
-    end
-  end
-
+  #POST /decAll
   def decAll
     @tick_tracks = TickTrack.all
     @tick_tracks.each do |tick_track|
@@ -117,11 +108,13 @@ class TickTracksController < ApplicationController
     end
   end
 
-  #Lazy lazy numbers
-  def incOne
+  #PUT /tick_tracks/1/incWound?amount=X
+  def incWound
     @tick_track = TickTrack.find(params[:id])
-    @tick_track.tick += 1
-    @tick_track.save
+    if params[:amount] != nil
+      @tick_track.wound += params[:amount].to_i
+      @tick_track.save
+    end
 
     respond_to do |format|
       format.html { redirect_to tick_tracks_url }
@@ -129,63 +122,15 @@ class TickTracksController < ApplicationController
     end
   end
 
-  def incTwo
+  #PUT /tick_tracks/1/incWound?amount=X
+  def resetWound
     @tick_track = TickTrack.find(params[:id])
-    @tick_track.tick += 2
+    @tick_track.wound = 0
     @tick_track.save
-
+    
     respond_to do |format|
       format.html { redirect_to tick_tracks_url }
       format.json { head :no_content }
-    end
-  end
-
-  def incThree
-    @tick_track = TickTrack.find(params[:id])
-    @tick_track.tick += 3
-    @tick_track.save
-
-    respond_to do |format|
-      format.html { redirect_to tick_tracks_url }
-      format.json { head :no_content }
-    end
-  end
-
-  def incFour
-    @tick_track = TickTrack.find(params[:id])
-    @tick_track.tick += 4
-    @tick_track.save
-
-    respond_to do |format|
-      format.html { redirect_to tick_tracks_url }
-      format.json { head :no_content }
-    end
-  end
-
-  def incFive
-    @tick_track = TickTrack.find(params[:id])
-    @tick_track.tick += 5
-    @tick_track.save
-
-    respond_to do |format|
-      format.html { redirect_to tick_tracks_url }
-      format.json { head :no_content }
-    end
-  end
-
-  #Wounds etc
-  def woundCycle
-    @tick_track = TickTrack.find(params[:id])
-    if @tick_track.wound != nil && @tick_track.wound < 5
-      @tick_track.wound += 1
-    else
-      @tick_track.wound = 0
-    end
-    @tick_track.save
-
-    respond_to do |format|
-      format.html { redirect_to tick_tracks_url }
-     format.json { head :no_content }
     end
   end
 end

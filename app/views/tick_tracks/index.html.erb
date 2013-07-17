@@ -7,20 +7,25 @@
 <% @PCtracks = @tick_tracks.select { |obj| (obj.isPC == true && obj.campaign.active == true) } %>
 <% @PCtracks.sort!{ |a,b| a.name <=> b.name} %>
 <% @PCtracks.each do |tick_track| %>
-  <div class="span2 trackboxPC <%= (tick_track.tick >=10 ? "winded" : "tick" + tick_track.tick.to_s()) %> <%= "wound" + tick_track.wound.to_s() %>">
+  <div class="span2 trackbox <%= (tick_track.tick >=10 ? "offbalance" : "tick" + tick_track.tick.to_s()) %> <%= tick_track.wound == 0 ? "wound-none" : (tick_track.wound < 3 ? "wound-light" : (tick_track.wound < 9 ? "wound-major" : (tick_track.wound < 27 ? "wound-severe" : "wound-critical"))) %>">
     <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
     <h1><%= tick_track.tick %><br></h1>
-    <p><div class="btn-group">
-      <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#">Tick&nbsp;<span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><%= link_to 'Add 1', "/tick_tracks/#{tick_track.id}/incOne", :method => :put %></li>
-      <li><%= link_to 'Add 2', "/tick_tracks/#{tick_track.id}/incTwo", :method => :put %></li>
-      <li><%= link_to 'Add 3', "/tick_tracks/#{tick_track.id}/incThree", :method => :put %></li>
-      <li><%= link_to 'Add 4', "/tick_tracks/#{tick_track.id}/incFour", :method => :put %></li>
-      <li><%= link_to 'Add 5', "/tick_tracks/#{tick_track.id}/incFive", :method => :put %></li>
+   <p><div class="btn-group">
+      <%= link_to '1', "/tick_tracks/#{tick_track.id}/incTick?amount=1", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '2', "/tick_tracks/#{tick_track.id}/incTick?amount=2", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '3', "/tick_tracks/#{tick_track.id}/incTick?amount=3", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '4', "/tick_tracks/#{tick_track.id}/incTick?amount=4", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '5', "/tick_tracks/#{tick_track.id}/incTick?amount=5", :method => :put, :class => "btn btn-mini" %>
+      <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#"><i class="icon-fire icon-black"></i></a>
+      <ul class="dropdown-menu">
+      <li><%= link_to 'Add Light Wound', "/tick_tracks/#{tick_track.id}/incWound?amount=1", :method => :put %></li>
+      <li><%= link_to 'Add Major Wound', "/tick_tracks/#{tick_track.id}/incWound?amount=3", :method => :put %></li>
+      <li><%= link_to 'Add Severe Wound', "/tick_tracks/#{tick_track.id}/incWound?amount=9", :method => :put %></li>
+      <li><%= link_to 'Add Critical Wound', "/tick_tracks/#{tick_track.id}/incWound?amount=27", :method => :put %></li>
+      <li><%= link_to 'Reset All Wounds', "/tick_tracks/#{tick_track.id}/resetWound", :method => :put %></li>
+      <li><%= link_to 'Kill Character', @tick_track, method: :delete, data: { confirm: 'Are you sure you want to kill this character?' }%></li>
     </ul>
     </div>
-    <%= link_to 'Wound', "/tick_tracks/#{tick_track.id}/woundCycle", :method => :put, :class => "btn btn-mini" %>
   </p>
   </div>
 <% end %>
@@ -32,20 +37,25 @@
 <% @NPCtracks = @tick_tracks.select { |obj| (obj.isPC == false && obj.campaign.active == true) } %>
 <% @NPCtracks.sort!{ |a,b| a.name <=> b.name} %>
 <% @NPCtracks.each do |tick_track| %>
-  <div class="span2 trackboxNPC <%= (tick_track.tick >=10 ? "winded" : "tick" + tick_track.tick.to_s()) %> <%= "wound" + tick_track.wound.to_s() %>">
+  <div class="span2 trackbox <%= (tick_track.tick >=10 ? "offbalance" : "tick" + tick_track.tick.to_s()) %> <%= tick_track.wound == 0 ? "wound-none" : (tick_track.wound < 3 ? "wound-light" : (tick_track.wound < 9 ? "wound-major" : (tick_track.wound < 27 ? "wound-severe" : "wound-critical"))) %>">
     <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
-    <h1><%= tick_track.tick %><br></h1>
-     <p><div class="btn-group">
-      <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#">Tick&nbsp;<span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><%= link_to 'Add 1', "/tick_tracks/#{tick_track.id}/incOne", :method => :put %></li>
-      <li><%= link_to 'Add 2', "/tick_tracks/#{tick_track.id}/incTwo", :method => :put %></li>
-      <li><%= link_to 'Add 3', "/tick_tracks/#{tick_track.id}/incThree", :method => :put %></li>
-      <li><%= link_to 'Add 4', "/tick_tracks/#{tick_track.id}/incFour", :method => :put %></li>
-      <li><%= link_to 'Add 5', "/tick_tracks/#{tick_track.id}/incFive", :method => :put %></li>
+    <h1><%= tick_track.tick %> - <%= tick_track.wound %><br></h1>
+    <p><div class="btn-group">
+      <%= link_to '1', "/tick_tracks/#{tick_track.id}/incTick?amount=1", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '2', "/tick_tracks/#{tick_track.id}/incTick?amount=2", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '3', "/tick_tracks/#{tick_track.id}/incTick?amount=3", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '4', "/tick_tracks/#{tick_track.id}/incTick?amount=4", :method => :put, :class => "btn btn-mini" %>
+      <%= link_to '5', "/tick_tracks/#{tick_track.id}/incTick?amount=5", :method => :put, :class => "btn btn-mini" %>
+      <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#"><i class="icon-fire icon-black"></i></a>
+      <ul class="dropdown-menu">
+      <li><%= link_to 'Add Light Wound', "/tick_tracks/#{tick_track.id}/incWound?amount=1", :method => :put %></li>
+      <li><%= link_to 'Add Major Wound', "/tick_tracks/#{tick_track.id}/incWound?amount=3", :method => :put %></li>
+      <li><%= link_to 'Add Severe Wound', "/tick_tracks/#{tick_track.id}/incWound?amount=9", :method => :put %></li>
+      <li><%= link_to 'Add Critical Wound', "/tick_tracks/#{tick_track.id}/incWound?amount=27", :method => :put %></li>
+      <li><%= link_to 'Reset All Wounds', "/tick_tracks/#{tick_track.id}/resetWound", :method => :put %></li>
+      <li><%= link_to 'Kill Character', tick_track, method: :delete, data: { confirm: 'Are you sure you want to kill this character?' }%></li>
     </ul>
     </div>
-    <%= link_to 'Wound', "/tick_tracks/#{tick_track.id}/woundCycle", :method => :put, :class => "btn btn-mini" %>
   </p>
   </div>
 <% end %>
@@ -57,8 +67,8 @@
 </div>
 <% else %>
 <div class= "nocampaign">
-  <img src="https://dl.dropboxusercontent.com/u/17155569/stopwatch-s.gif"><br>
-  <%= link_to 'Click Here to Select a Campaign', "/campaigns/", :class => "btn btn-large" %>  
+  <%= image_tag "/assets/stopwatch-s.gif" %><br>
+  <%= link_to 'Click Here to Select a Campaign', "/campaigns/", :class => "btn btn-large" %>
 </div>
 <% end %>
 

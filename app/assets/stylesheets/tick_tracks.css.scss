@@ -2,44 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-
-
 .nocampaign {
 	text-align: center;
 }
 
-.trackboxPC {
+.trackbox {
 	text-align: center;
 	color: black;
 	padding-bottom: 5px;
 	margin: 10px 22px 10px 22px;
-	a:link {color:#000000; text-decoration: none;}      /* unvisited link */
-	a:visited {color:#000000; text-decoration: none;}  /* visited link */
-	a:hover {color:#ffffff; text-decoration: none;}  /* mouse over link */
-	a:active {color:#000000; text-decoration: none;}  /* selected link */
+	a:link {color:#000000; text-decoration: none;}
+	a:visited {color:#000000; text-decoration: none;}
+	a:hover {color:#ffffff; text-decoration: none;}
+	a:active {color:#000000; text-decoration: none;}
 }
 
-.trackboxNPC {
-	text-align: center;
-	color: black;
-	padding-bottom: 5px;
-	margin: 10px 22px 10px 22px;
-	a:link {color:#000000; text-decoration: none;}      /* unvisited link */
-	a:visited {color:#000000; text-decoration: none;}  /* visited link */
-	a:hover {color:#ffffff; text-decoration: none;}  /* mouse over link */
-	a:active {color:#000000; text-decoration: none;}  /* selected link */
-}
-
-.tick0.trackboxPC {
+.tick0.trackbox {
 	color: #00aa00;
 }
 
-.tick0.trackboxNPC {
-	color: #00aa00;
-}
 
-.winded {
+.offbalance {
 	color: #ff0000;
 }
 
@@ -47,29 +30,24 @@
 	margin-top: 30px;
 }
 
-.wound0 {
+.wound-none {
 	background: #ccff99;
 }
 
-.wound1 {
+.wound-light {
 	background: #ffff99;
 }
 
-.wound2 {
+.wound-major {
 	background: #ff9933;
 }
 
-.wound3 {
+.wound-severe {
 	background: #dd0000;
 }
 
-.wound4 {
+.wound-critical {
 	background: #880000;
-}
-
-.wound5 {
-	background: #666666;
-	color: #666666 !important;
 }
 
 
