@@ -39,7 +39,7 @@
 <% @NPCtracks.each do |tick_track| %>
   <div class="span2 trackbox <%= (tick_track.tick >=10 ? "offbalance" : "tick" + tick_track.tick.to_s()) %> <%= tick_track.wound == 0 ? "wound-none" : (tick_track.wound < 3 ? "wound-light" : (tick_track.wound < 9 ? "wound-major" : (tick_track.wound < 27 ? "wound-severe" : "wound-critical"))) %>">
     <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
-    <h1><%= tick_track.tick %> - <%= tick_track.wound %><br></h1>
+    <h1><%= tick_track.tick %><br></h1>
     <p><div class="btn-group">
       <%= link_to '1', "/tick_tracks/#{tick_track.id}/incTick?amount=1", :method => :put, :class => "btn btn-mini" %>
       <%= link_to '2', "/tick_tracks/#{tick_track.id}/incTick?amount=2", :method => :put, :class => "btn btn-mini" %>
