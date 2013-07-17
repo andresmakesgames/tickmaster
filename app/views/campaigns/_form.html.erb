@@ -1,29 +1,7 @@
-<%= form_for(@campaign) do |f| %>
-  <% if @campaign.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
-
-      <ul>
-      <% @campaign.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :GM %><br />
-    <%= f.text_field :GM %>
-  </div>
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for @campaign do |f| %>
+<%= f.input :name, label: 'What is the name of the campaign?' %>
+<%= f.input :GM, label: 'Who is the GM for this campaign?' %>
+<%= f.input :active, label: 'Check this box to enable this campaign.' %>
+<%= f.button :submit, "Done" , :class => "btn btn-primary" %>
+<%= link_to 'Back', campaigns_path, :class => "btn" %>
 <% end %>

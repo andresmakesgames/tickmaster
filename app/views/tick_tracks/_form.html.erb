@@ -1,13 +1,21 @@
 <%= simple_form_for @tick_track do |f| %>
-<%= f.input :name, label: 'What is the name of the character?' %>
-<%= f.input :tick, label: 'What tick will they be starting on?' %>
-<%= f.input :isPC, label: 'Check this box if this is a player.' %>
-<% cookie_id = cookies[:campaign_id] %>
-<% if cookie_id != nil %>
-<%= f.input :campaign_id, collection: Campaign.where(:active => true), :selected => Integer(cookie_id), label: 'Select your campaign:' %>
-<% else %>
-<%= f.input :campaign_id, collection: Campaign.where(:active => true), label: 'Select your campaign:' %>
-<% end %>
-<%= f.hidden_field :wound, value: 0 %>
-<%= f.button :submit %>
+	<%= f.input :name, label: 'What is the name of the character?' %>
+	<%= f.input :tick, label: 'What tick will they be starting on?', :value => 0 %>
+	<%= f.input :isPC, label: 'Check this box if this is a player.' %>
+	<% cookie_id = cookies[:campaign_id] %>
+
+	<% if cookie_id != nil %>
+		<%= f.input :campaign_id, collection: Campaign.where(:active => true), :selected => Integer(cookie_id), label: 'Select your campaign:' %>
+	<% else %>
+		<%= f.input :campaign_id, collection: Campaign.where(:active => true), label: 'Select your campaign:' %>
+	<% end %>
+
+	<% if @tick_track.wound != nil %>
+		<%= f.hidden_field :wound, value: @tick_track.wound %>
+	<% else %>
+		<%= f.hidden_field :wound, value: 0 %>
+	<% end %>
+
+	<%= f.button :submit, "Done" , :class => "btn btn-primary" %>
+	<%= link_to 'Back', tick_tracks_path, :class => "btn" %>
 <% end %>

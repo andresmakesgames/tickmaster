@@ -1,13 +1,13 @@
 <% cookie_id = cookies[:campaign_id] %>
 <% if cookie_id != nil %>
 <% @tick_tracks = @tick_tracks.select {|obj| obj.campaign_id == Integer(cookie_id)} %>
-<h2>Player Ticks</h2>
+<h2>Player Characters</h2>
 
 <div class="row well">
 <% @PCtracks = @tick_tracks.select { |obj| (obj.isPC == true && obj.campaign.active == true) } %>
 <% @PCtracks.sort!{ |a,b| a.name <=> b.name} %>
 <% @PCtracks.each do |tick_track| %>
-  <div class="span2 trackbox <%= (tick_track.tick >=10 ? "offbalance" : "tick" + tick_track.tick.to_s()) %> <%= tick_track.wound == 0 ? "wound-none" : (tick_track.wound < 3 ? "wound-light" : (tick_track.wound < 9 ? "wound-major" : (tick_track.wound < 27 ? "wound-severe" : "wound-critical"))) %>">
+  <div class="span2 trackbox <%= tick_track.tick != nil ? (tick_track.tick >=10 ? "offbalance" : "tick" + tick_track.tick.to_s()) : "errortick" %> <%= tick_track.wound != nil ? (tick_track.wound == 0 ? "wound-none" : (tick_track.wound < 3 ? "wound-light" : (tick_track.wound < 9 ? "wound-major" : (tick_track.wound < 27 ? "wound-severe" : "wound-critical")))) : "errorwound" %>">
     <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
     <h1><%= tick_track.tick %><br></h1>
    <p><div class="btn-group">
@@ -23,7 +23,7 @@
       <li><%= link_to 'Add Severe Wound', "/tick_tracks/#{tick_track.id}/incWound?amount=9", :method => :put %></li>
       <li><%= link_to 'Add Critical Wound', "/tick_tracks/#{tick_track.id}/incWound?amount=27", :method => :put %></li>
       <li><%= link_to 'Reset All Wounds', "/tick_tracks/#{tick_track.id}/resetWound", :method => :put %></li>
-      <li><%= link_to 'Kill Character', @tick_track, method: :delete, data: { confirm: 'Are you sure you want to kill this character?' }%></li>
+      <li><%= link_to 'Kill Character', tick_track, method: :delete, data: { confirm: 'Are you sure you want to kill this character?' }%></li>
     </ul>
     </div>
   </p>
@@ -31,13 +31,13 @@
 <% end %>
 </div>
 
-<h2>NPC Ticks</h2>
+<h2>Non-Player Characters</h2>
 
 <div class="row well">
 <% @NPCtracks = @tick_tracks.select { |obj| (obj.isPC == false && obj.campaign.active == true) } %>
 <% @NPCtracks.sort!{ |a,b| a.name <=> b.name} %>
 <% @NPCtracks.each do |tick_track| %>
-  <div class="span2 trackbox <%= (tick_track.tick >=10 ? "offbalance" : "tick" + tick_track.tick.to_s()) %> <%= tick_track.wound == 0 ? "wound-none" : (tick_track.wound < 3 ? "wound-light" : (tick_track.wound < 9 ? "wound-major" : (tick_track.wound < 27 ? "wound-severe" : "wound-critical"))) %>">
+  <div class="span2 trackbox <%= tick_track.tick != nil ? (tick_track.tick >=10 ? "offbalance" : "tick" + tick_track.tick.to_s()) : "emptytick" %> <%= tick_track.wound != nil ? (tick_track.wound == 0 ? "wound-none" : (tick_track.wound < 3 ? "wound-light" : (tick_track.wound < 9 ? "wound-major" : (tick_track.wound < 27 ? "wound-severe" : "wound-critical")))) : "errorwound" %>">
     <h4><%= link_to tick_track.name, edit_tick_track_path(tick_track) %><br></h4>
     <h1><%= tick_track.tick %><br></h1>
     <p><div class="btn-group">
@@ -63,7 +63,7 @@
 
 <div class ="mainbuttons">
   <%= link_to 'Advance Tick', "/decAll", :method => :post, :class => "btn btn-primary btn-large" %>
-  <%= link_to 'New Tracker', new_tick_track_path, :class => "btn btn-large" %>
+  <%= link_to 'New Character', new_tick_track_path, :class => "btn btn-large" %>
 </div>
 <% else %>
 <div class= "nocampaign">

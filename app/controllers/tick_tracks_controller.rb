@@ -90,7 +90,7 @@ class TickTracksController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to tick_tracks_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
@@ -100,10 +100,11 @@ class TickTracksController < ApplicationController
     @tick_tracks = TickTrack.all
     @tick_tracks.each do |tick_track|
       tick_track.decrement(:tick) if tick_track.tick > 0
+      tick_track.tick = 0 if tick_track.tick < 0
       tick_track.save
     end
     respond_to do |format|
-      format.html { redirect_to tick_tracks_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
@@ -117,7 +118,7 @@ class TickTracksController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to tick_tracks_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
@@ -129,7 +130,7 @@ class TickTracksController < ApplicationController
     @tick_track.save
     
     respond_to do |format|
-      format.html { redirect_to tick_tracks_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
