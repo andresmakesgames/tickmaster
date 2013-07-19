@@ -41,9 +41,26 @@ class TickTracksController < ApplicationController
   # POST /tick_tracks.json
   def create
     @tick_track = TickTrack.new(params[:tick_track])
+    if @tick_track.bulkCount != nil
+      if @tick_track.bulkCount > 1
+        labelAdd = 1
+        @tick_track.name = @tick_track.name + " " + labelAdd.to_s
+        saveSuccess = @tick_track.save
+        until (labelAdd - 1) == @tick_track.bulkCount
+          labelAdd += 1
+          @tick_track = TickTrack.new(params[:tick_track])
+          @tick_track.name = @tick_track.name + " " + labelAdd.to_s
+          saveSuccess = @tick_track.save
+        end
+      else
+        saveSuccess = @tick_track.save
+      end
+    else
+      saveSuccess = @tick_track.save
+    end
 
     respond_to do |format|
-      if @tick_track.save
+      if saveSuccess
         format.html { redirect_to tick_tracks_url }
         format.json { render json: @tick_track, status: :created, location: @tick_track }
       else
@@ -123,7 +140,7 @@ class TickTracksController < ApplicationController
     end
   end
 
-  #PUT /tick_tracks/1/incWound?amount=X
+  #PUT /tick_tracks/1/resetWound
   def resetWound
     @tick_track = TickTrack.find(params[:id])
     @tick_track.wound = 0

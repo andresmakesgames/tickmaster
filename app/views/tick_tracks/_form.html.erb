@@ -1,6 +1,6 @@
 <%= simple_form_for @tick_track do |f| %>
 	<%= f.input :name, label: 'What is the name of the character?' %>
-	<%= f.input :tick, label: 'What tick will they be starting on?', :value => 0 %>
+	<%= f.input :tick, label: 'What tick will they be starting on?', :value => 0, input_html: { class: 'input-small' } %>
 	<%= f.input :isPC, label: 'Check this box if this is a player.' %>
 	<% cookie_id = cookies[:campaign_id] %>
 
@@ -9,6 +9,8 @@
 	<% else %>
 		<%= f.input :campaign_id, collection: Campaign.where(:active => true), label: 'Select your campaign:' %>
 	<% end %>
+
+	<%= f.input :bulkCount, collection: 0..9, label: 'Extra copies of this character?', value: 0, input_html: { class: 'input-small' } %>
 
 	<% if @tick_track.wound != nil %>
 		<%= f.hidden_field :wound, value: @tick_track.wound %>
