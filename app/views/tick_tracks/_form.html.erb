@@ -10,14 +10,14 @@
 		<%= f.input :campaign_id, collection: Campaign.where(:active => true), label: 'Select your campaign:' %>
 	<% end %>
 
-	<%= f.input :bulkCount, collection: 0..9, label: 'Extra copies of this character?', value: 0, input_html: { class: 'input-small' } %>
-
-	<% if @tick_track.wound != nil %>
-		<%= f.hidden_field :wound, value: @tick_track.wound %>
-	<% else %>
+	<% if @tick_track.new_record? %>
+		<%= f.input :bulkCount, collection: 0..9, label: 'Extra copies of this character?', value: 0, input_html: { class: 'input-small' } %>
 		<%= f.hidden_field :wound, value: 0 %>
 	<% end %>
 
 	<%= f.button :submit, "Done" , :class => "btn btn-primary" %>
-	<%= link_to 'Back', tick_tracks_path, :class => "btn" %>
+	<% if !@tick_track.new_record? %>
+		<%= link_to 'Delete', @tick_track, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+	<% end %>
+	<%= link_to 'Back', root_path, :class => "btn" %>
 <% end %>
